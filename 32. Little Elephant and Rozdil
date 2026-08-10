@@ -1,0 +1,32 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+
+    int best = INT_MAX;
+    int pos = -1;
+    bool same = false;
+
+    for (int i = 1; i <= n; i++) {
+        int x;
+        cin >> x;
+
+        if (x < best) {
+            best = x;
+            pos = i;
+            same = false;
+        }
+        else if (x == best) {
+            same = true;
+        }
+    }
+
+    if (same)
+        cout << "Still Rozdil";
+    else
+        cout << pos;
+
+    return 0;
+}
