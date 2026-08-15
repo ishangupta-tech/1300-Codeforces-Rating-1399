@@ -1,0 +1,37 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+bool lucky(long long x) {
+    while (x > 0) {
+        int d = x % 10;
+        if (d != 4 && d != 7)
+            return false;
+        x /= 10;
+    }
+    return true;
+}
+
+int main() {
+    long long a, b;
+    cin >> a >> b;
+
+    vector<long long> luckyNumbers;
+
+    for (int i = 1; i <= 1000000000; i++) {
+        if (lucky(i))
+            luckyNumbers.push_back(i);
+    }
+
+    long long ans = 0;
+
+    for (long long x : luckyNumbers) {
+        if (x >= a && x <= b)
+            ans += x;
+        else if (x > b)
+            break;
+    }
+
+    cout << ans;
+
+    return 0;
+}
