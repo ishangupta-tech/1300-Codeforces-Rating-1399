@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+
+    int one = 0, two = 0;
+
+    for (int i = 0; i < n; i++) {
+        int x;
+        cin >> x;
+
+        if (x == 100)
+            one++;
+        else
+            two++;
+    }
+
+    if (two % 2 == 1) {
+        if (one >= 2)
+            one -= 2;
+        else {
+            cout << "NO";
+            return 0;
+        }
+    }
+
+    if (one % 2 == 0)
+        cout << "YES";
+    else
+        cout << "NO";
+
+    return 0;
+}
