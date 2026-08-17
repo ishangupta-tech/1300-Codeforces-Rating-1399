@@ -1,0 +1,74 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int n, m;
+    cin >> n >> m;
+
+    vector<vector<int>> people(n);
+    vector<int> languageUsed(m, 0);
+
+    for (int i = 0; i < n; i++) {
+        int k;
+        cin >> k;
+
+        for (int j = 0; j < k; j++) {
+            int x;
+            cin >> x;
+            x--;
+            people[i].push_back(x);
+            languageUsed[x] = 1;
+        }
+    }
+
+    bool any = false;
+
+    for (int x : languageUsed) {
+        if (x) {
+            any = true;
+            break;
+        }
+    }
+
+    if (!any) {
+        cout << n;
+        return 0;
+    }
+
+    vector<bool> visited(n, false);
+    int components = 0;
+
+    for (int i = 0; i < n; i++) {
+        if (visited[i])
+            continue;
+
+        components++;
+
+        queue<int> q;
+        q.push(i);
+        visited[i] = true;
+
+        while (!q.empty()) {
+            int person = q.front();
+            q.pop();
+
+            for (int lang : people[person]) {
+                for (int j = 0; j < n; j++) {
+                    if (!visited[j]) {
+                        for (int x : people[j]) {
+                            if (x == lang) {
+                                visited[j] = true;
+                                q.push(j);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    cout << components - 1;
+
+    return 0;
+}
