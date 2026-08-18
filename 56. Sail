@@ -1,0 +1,44 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int t;
+    cin >> t;
+
+    int sx, sy, ex, ey;
+    cin >> sx >> sy >> ex >> ey;
+
+    string s;
+    cin >> s;
+
+    int ans = 0;
+
+    for (char c : s) {
+        if (sx < ex && c == 'E') {
+            sx++;
+        }
+        else if (sx > ex && c == 'W') {
+            sx--;
+        }
+        else if (sy < ey && c == 'N') {
+            sy++;
+        }
+        else if (sy > ey && c == 'S') {
+            sy--;
+        }
+        else {
+            continue;
+        }
+
+        ans++;
+
+        if (sx == ex && sy == ey) {
+            cout << ans;
+            return 0;
+        }
+    }
+
+    cout << -1;
+
+    return 0;
+}
