@@ -1,0 +1,51 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    string a, b;
+    cin >> a >> b;
+
+    int target = 0;
+    int current = 0;
+    int unknown = 0;
+
+    for (char c : a) {
+        if (c == '+')
+            target++;
+        else
+            target--;
+    }
+
+    for (char c : b) {
+        if (c == '+')
+            current++;
+        else if (c == '-')
+            current--;
+        else
+            unknown++;
+    }
+
+    int diff = target - current;
+
+    if (abs(diff) > unknown || (unknown + diff) % 2 != 0) {
+        cout << fixed << setprecision(12) << 0.0;
+        return 0;
+    }
+
+    int plus = (unknown + diff) / 2;
+
+    double total = pow(2, unknown);
+    double favourable = 0;
+
+    // Calculate C(unknown, plus)
+    favourable = 1;
+
+    for (int i = 1; i <= plus; i++) {
+        favourable *= (unknown - i + 1);
+        favourable /= i;
+    }
+
+    cout << fixed << setprecision(12) << favourable / total;
+
+    return 0;
+}
