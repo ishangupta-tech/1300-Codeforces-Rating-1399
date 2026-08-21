@@ -1,0 +1,23 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    long long a, b, c;
+    cin >> a >> b >> c;
+
+    long long x = (a + b - c) / 2;
+    long long y = (a + c - b) / 2;
+    long long z = (b + c - a) / 2;
+
+    if (a + b <= c || a + c <= b || b + c <= a ||
+        (a + b - c) % 2 != 0 ||
+        (a + c - b) % 2 != 0 ||
+        (b + c - a) % 2 != 0) {
+        cout << -1;
+    }
+    else {
+        cout << x << " " << y << " " << z;
+    }
+
+    return 0;
+}
