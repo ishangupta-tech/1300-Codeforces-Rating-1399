@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+
+    vector<int> a(n);
+
+    for (int i = 0; i < n; i++)
+        cin >> a[i];
+
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = i + 1; j < n - 1; j++) {
+
+            int a1 = a[i];
+            int a2 = a[i + 1];
+
+            int b1 = a[j];
+            int b2 = a[j + 1];
+
+            bool crossing =
+                (min(a1, a2) < min(b1, b2) &&
+                 min(b1, b2) < max(a1, a2) &&
+                 max(a1, a2) < max(b1, b2))
+                ||
+                (min(b1, b2) < min(a1, a2) &&
+                 min(a1, a2) < max(b1, b2) &&
+                 max(b1, b2) < max(a1, a2));
+
+            if (crossing) {
+                cout << "yes";
+                return 0;
+            }
+        }
+    }
+
+    cout << "no";
+
+    return 0;
+}
