@@ -1,0 +1,33 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+bool lucky(long long x) {
+    while (x > 0) {
+        int d = x % 10;
+
+        if (d != 4 && d != 7)
+            return false;
+
+        x /= 10;
+    }
+
+    return true;
+}
+
+int main() {
+    long long n;
+    cin >> n;
+
+    long long ans = -1;
+
+    for (long long i = n; i <= 77777777; i++) {
+        if (lucky(i)) {
+            ans = i;
+            break;
+        }
+    }
+
+    cout << ans;
+
+    return 0;
+}
