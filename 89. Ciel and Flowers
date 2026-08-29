@@ -1,0 +1,34 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+const int MOD = 1000000007;
+
+int main() {
+    int n, k, d;
+    cin >> n >> k >> d;
+
+    vector<vector<int>> dp(n + 1, vector<int>(2, 0));
+
+    dp[0][0] = 1;
+
+    for (int sum = 0; sum <= n; sum++) {
+        for (int big = 0; big < 2; big++) {
+            if (dp[sum][big] == 0)
+                continue;
+
+            for (int x = 1; x <= k; x++) {
+                if (sum + x > n)
+                    break;
+
+                int newBig = big || (x >= d);
+
+                dp[sum + x][newBig] += dp[sum][big];
+                dp[sum + x][newBig] %= MOD;
+            }
+        }
+    }
+
+    cout << dp[n][1];
+
+    return 0;
+}
