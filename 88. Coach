@@ -1,0 +1,62 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int n, m;
+    cin >> n >> m;
+
+    vector<int> skill(n);
+    for (int i = 0; i < n; i++)
+        cin >> skill[i];
+
+    vector<vector<int>> groups(m);
+
+    for (int i = 0; i < n; i++) {
+        groups[skill[i]].push_back(i + 1);
+    }
+
+    vector<int> ans;
+
+    for (int i = 0; i < m; i++) {
+        if (groups[i].size() == 3) {
+            for (int x : groups[i])
+                ans.push_back(x);
+        }
+        else if (groups[i].size() == 2) {
+            cout << -1;
+            return 0;
+        }
+    }
+
+    // Pair the remaining students with skill 0
+    vector<int> singles;
+
+    for (int i = 0; i < m; i++) {
+        if (groups[i].empty())
+            continue;
+
+        if (groups[i].size() == 1)
+            singles.push_back(groups[i][0]);
+    }
+
+    if (singles.size() % 3 != 0) {
+        cout << -1;
+        return 0;
+    }
+
+    for (int i = 0; i < singles.size(); i += 3) {
+        cout << singles[i] << " "
+             << singles[i + 1] << " "
+             << singles[i + 2] << '\n';
+    }
+
+    for (int i = 0; i < m; i++) {
+        if (groups[i].size() == 3) {
+            cout << groups[i][0] << " "
+                 << groups[i][1] << " "
+                 << groups[i][2] << '\n';
+        }
+    }
+
+    return 0;
+}
