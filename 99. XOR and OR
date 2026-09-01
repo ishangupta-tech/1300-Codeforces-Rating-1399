@@ -1,0 +1,32 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    string a, b;
+    cin >> a >> b;
+
+    if (a.size() != b.size()) {
+        cout << "NO";
+        return 0;
+    }
+
+    bool hasOneA = false;
+    bool hasOneB = false;
+
+    for (char c : a) {
+        if (c == '1')
+            hasOneA = true;
+    }
+
+    for (char c : b) {
+        if (c == '1')
+            hasOneB = true;
+    }
+
+    if (hasOneA == hasOneB)
+        cout << "YES";
+    else
+        cout << "NO";
+
+    return 0;
+}
